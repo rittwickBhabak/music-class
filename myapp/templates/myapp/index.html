@@ -1,0 +1,11 @@
+{% extends 'myapp/base.html' %}
+{% block page_title %} Home | All Songs {% endblock %}
+{% block home_active %} active {% endblock %}
+{% block page_content %}
+    
+    <div class="list-group all-songs col-lg-6 offset-lg-3 col-12">
+        {% for song in songs %}
+            <a href="{% url 'song-page' song.id %}" class="list-group-item list-group-item-action">{{song.title}}</a>
+        {% endfor %}
+    </div>
+{% endblock %}
