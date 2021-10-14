@@ -1,16 +1,45 @@
 {% extends 'myapp/base.html' %}
 {% block page_title %} {{song.title}} {% endblock %}
 {% block page_content %}
-    
+
+<div class="row">
+    <div class="col-12">
+        <div >
+            <p>Convert recorded audio to:</p>
+            <select id="encodingTypeSelect" class="form-select">
+                <option value="wav">Waveform Audio (.wav)</option>
+                <option value="mp3">MP3 (MPEG-1 Audio Layer III) (.mp3)</option>
+                <option value="ogg">Ogg Vorbis (.ogg)</option>
+            </select>
+            <div id="controls" class="mt-2">
+                <button id="recordButton" class="btn btn-outline-secondary" >Record</button>
+                <button id="stopButton"  class="btn btn-outline-secondary" disabled>Stop</button>
+            </div>
+            <div id="formats"></div>
+            <pre class="d-none">Log</pre>
+            <pre id="log" class="d-none"></pre>
+
+            <pre>Recordings</pre>
+            <ol id="recordingsList"></ol>
+        </div>
+    </div>
+</div>
+<script src="/static/js/WebAudioRecorder.min.js"></script>
+<script src="/static/js/app.js"></script>
 <div class="row">
     <div class="col-lg-6 col-12 mb-3">
-    <iframe class="w-100" height="600" src="https://www.youtube.com/embed/{{song.youTubeVideoID}}"></iframe>
-    <br>
-    <p>Watch on <a href="https://www.youtube.com/watch?v={{song.youTubeVideoID}}" target="_blank">YouTube</a></p>
+        <!--<iframe class="w-100" height="400" src="https://www.youtube.com/embed/{{song.youTubeVideoID}}"></iframe>-->
+        <video class="w-100" src="https://github.com/my-personal-repos/music-videos/raw/main/{{song.youTubeVideoID}}" controls></video>
+        <br>
+        <!--<p>Watch on <a href="https://www.youtube.com/watch?v={{song.youTubeVideoID}}" target="_blank">YouTube</a></p>-->
     </div>
     <div class="col-lg-6 col-12 mb-3">
         <img src="{{song.lyricsURL}}" alt="{{song.title}}" class="w-100 rounded">
     </div>
 </div>
+
+
+
+
 
 {% endblock %}
